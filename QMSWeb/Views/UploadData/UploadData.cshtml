@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "UploadData";
+    Layout = "~/Views/Shared/_Layout.cshtml";  
+}
+
+
+<script src="~/Scripts/UploadData/_UploadData.js"></script>
+
+<span id="UserID" class="span" style="display:none">@ViewData["UID"]</span>
+<span id="PU" class="span" style="display:none">@ViewData["PU"]</span>
+
+<div class="divQtype"><select id="list" class="list"></select></div>
+<br />
+<div id="PartialView" style="margin:1px"></div>

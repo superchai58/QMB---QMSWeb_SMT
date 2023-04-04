@@ -1,0 +1,65 @@
+﻿@model QMSWeb.Model.QueryData
+
+<script src="~/Scripts/QueryData/_PartialView_SpecialItem.js"></script>
+<script src="~/Scripts/jquery.easyui.min.js"></script>
+
+<div style="padding-left:5px;height:30px">
+    @{
+         var xmlList = Model.xmlList;
+         var jsonxmlList = Newtonsoft.Json.JsonConvert.SerializeObject(Model.xmlList);
+         if (!string.IsNullOrEmpty(jsonxmlList))
+         {
+            foreach (var item in xmlList)
+            { 
+                string Item = item.Item;
+                string ItemType = item.ItemType;
+                if (Item != "ObjectName")
+                {
+                   @Html.Label("", Item, new { @class = "LabelWIP" });
+                }
+                if (ItemType.ToLower() != "")
+                {
+                  if (ItemType.ToLower() == "datetime")
+                  {
+                     string dtItem=Item;
+                     <input class="easyui-datetimebox" id="@dtItem" data-options="onShowPanel:function(){$(this).datetimebox('spinner').timespinner('setValue','08:00:00');}">
+                  }
+                  else if (ItemType.ToLower() == "date")
+                  {
+                     @Html.TextBox(Item, "", new { @class = "easyui-datebox",type = "text"});
+                  }
+                  else if (ItemType.ToLower() == "time")
+                  {
+                     @Html.TextBox(Item, "", new { @class = "TextBox", type = "time" });
+                  }
+                  else
+                  {
+                     string strItem=Item;
+                     if (strItem == "ObjectName")
+                     {
+                       @Html.TextBox(Item, "", new { @type = "hidden" })
+                     }
+                     else
+                     {
+                       <input id="@strItem" class="easyui-textbox TextBox_Q"/>
+                     }        
+                  }
+                }
+                <input id="xmlList" type="hidden" value="@jsonxmlList"/>
+                <input id="QueryInterval" type="hidden" value="@Model.queryInterval"/> 
+             }
+          }                  
+     }        
+     <button id="submitQ" name="submitQ" class="ButtonQuery" onclick="btnWIPWO_click(this.id)">查询</button>
+     <button id="submitE" name="btnExcel" class="Buttonexport" onclick="btnWIPWO_click(this.id)">导出</button>
+</div>
+<div id="el" class="easyui-layout" style="width:100%;height:490px">
+    <div data-options="region:'west',title:'Line--WO',split:true" style="width:220px;"><ul id="tree"></ul></div>
+    <div data-options="region:'center',title:'',split:true" style="padding:5px;">
+        <div style="height:150px;"><Table id="myDataTableSum" class="table"></Table></div>
+        <br />
+        <Table id="myDataTableDetail" class="table"></Table>
+    </div>
+</div>
+
+<input id="WOdetail" type="hidden" value=""/>

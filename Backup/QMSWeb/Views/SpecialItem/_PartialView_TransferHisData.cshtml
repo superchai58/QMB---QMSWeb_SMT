@@ -1,0 +1,64 @@
+﻿@model QMSWeb.Model.SpecialItem
+
+<script src="~/Scripts/SpecialItem/_PartialView_TransferHisData.js"></script>
+
+<div class="divleft_TS">
+    <br /><br />
+    &emsp;Transfer History Data
+    <br /><br />
+     @{
+           var xmlList = Model.xmlList;
+           var jsonxmlList = Newtonsoft.Json.JsonConvert.SerializeObject(Model.xmlList);
+           if (!string.IsNullOrEmpty(jsonxmlList))
+           {
+              foreach (var item in xmlList)
+              { 
+                  <br /><br />
+                  string Item = item.Item;
+                  string ItemType = item.ItemType;
+                  if (ItemType.ToLower() == "combobox")
+                  {
+                     @Html.Label("", Item, new { @class = "TSLabel" });
+                      <select id="@Item"></select>
+                   }
+                  else if (ItemType.ToLower() != "" && ItemType.ToLower() != "button")
+                   {
+                       @Html.Label("", Item, new { @class = "TSLabel" });
+                       string strItem=Item;
+                       <input id="@strItem" class="easyui-textbox TextBox_SI"/>
+                    }           
+                }
+                <input id="xmlList" type="hidden" value="@jsonxmlList"/>
+                <input id="limitQty" type="hidden" value="@Model.limitQty"/>
+               }
+              <br /><br />
+           <div class="div_fp_MD">
+            <br /><br />
+            @Html.TextBox("filePath", "", new { @class = "f_TextBox"})
+            <button id="Upload" name="btnUpload" class="ButtonUpload" onclick="btUpload(this.id)">批量导出</button>
+            <br /><br />
+            <a class="href" href="javascript:dowloadTemplate()">[ Download Template ]</a>          
+           </div>
+         <br /><br />
+         }    
+</div>
+
+<div class="divleft_TS"">
+        <br /><br />&emsp;Transfer QSMC Data<br /><br /> <br /> <br />
+        @Html.Label("", "Customer", new { @class = "TSLabel" })
+        <select id="Customer"></select><br /><br />
+        @Html.Label("", "SN", new { @class = "TSLabel" })
+        <input id="QSMCSN" class="easyui-textbox TextBox_SI"/><br /><br />
+        <div class="div_fp_MD">
+            <br /><br />
+            @Html.TextBox("filePathQSMS", "", new { @class = "f_TextBox"})
+            <button id="UploadQSMS" name="btnUpload" class="ButtonUpload" onclick="btUpload(this.id)">批量导出</button>
+            <br /><br />
+            <a class="href" href="javascript:dowloadTemplate()">[ Download Template ]</a>          
+        </div>
+</div>
+<br />
+<div style="background-color:lightpink;height:30px;width:80%;display:inline-block;margin:10px">
+    <label id="lblmsg" class="ts_Label">msg......</label>
+</div>
+

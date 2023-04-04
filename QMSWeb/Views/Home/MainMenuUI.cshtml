@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "MainMenuUI";
+    Layout = "~/Views/Shared/_Layout.cshtml";  
+}
+
+<script src="~/Scripts/Index/_MainMenuUI.js"></script>
+
+<div style="text-align:right">
+    <a class="span" href="javascript:Login()">返回登录</a> &emsp;&emsp;
+    <span class="span">当前用户:@ViewData["UID"]</span> 
+    <span class="span">PU:@ViewData["PU"]</span> 
+</div>
+
+<body class="body">
+    <div class="MainMenuUI">
+        @*<a href="/QueryData/QueryData?uid=@ViewData["uid"]" target="_blank">查询专区(QueryData)</a>*@
+        @Html.ActionLink("查询数据专区(QueryData)","QueryData","QueryData",new { UID = @ViewData["UID"],PU= @ViewData["PU"]}, new{ target="_blank"})
+    </div>
+    <br />
+    <div class="MainMenuUI">
+         @Html.ActionLink("定义数据专区(DefineData)","DefineData","DefineData",new { UID = @ViewData["UID"],PU= @ViewData["PU"]}, new{ target="_blank"})
+    </div>
+    <br />
+    <div class="MainMenuUI">
+         @Html.ActionLink("上传数据专区(UploadData)","UploadData","UploadData",new { UID = @ViewData["UID"],PU= @ViewData["PU"]}, new{ target="_blank"})
+    </div>
+    <br />
+    <div class="MainMenuUI">
+        @Html.ActionLink("上传文件专区(UploadFile)","UploadFile","UploadFile",new { UID = @ViewData["UID"],PU= @ViewData["PU"]}, new{ target="_blank"})
+    </div>
+    <br />
+    <div class="MainMenuUI">
+         @Html.ActionLink("删除数据专区(DeleteData)","DeleteData","DeleteData",new { UID = @ViewData["UID"],PU= @ViewData["PU"]}, new{ target="_blank"})
+    </div>
+     <br />
+    <div class="MainMenuUI">
+        @Html.ActionLink("其他(SpecialItem)","SpecialItem","SpecialItem",new { UID = @ViewData["UID"],PU= @ViewData["PU"]}, new{ target="_blank"})
+    </div>
+    <br />
+    <div class="MainMenuUI">
+        @Html.ActionLink("看板专区(ShowBoard)","ShowBoardItem","ShowBoardItem",new { UID = @ViewData["UID"],PU= @ViewData["PU"]}, new{ target="_blank"})
+    </div>
+    <br />
+    <div class="MainMenuUI">
+        <a href="#">小工具-->待开发</a>
+    </div>
+</body>

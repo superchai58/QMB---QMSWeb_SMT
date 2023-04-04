@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";  
+}
+<script src="~/Scripts/Index/_index.js"></script>
+<body class="bodyR">
+    <br />
+    <div class="indextext">Welcome,Please Register first!</div>
+    <br /><br /><br /><br />
+    <div style="text-align:center" class="index">
+        <select id="BU"></select>
+    </div>
+    <div class="index" style="text-align:center">
+        <input id="username" type="text" autocomplete="off" placeholder="UserName">
+    </div>
+    <div class="index" style="text-align:center">
+        <input id="password" type="password" autocomplete="off" placeholder="PassWord" onkeydown="keydown(event)">
+    </div>
+    <div class="index" style="text-align:center">
+        <button id="submit" name="btnSub" onclick="btRegister()">Register</button>
+    </div>
+</body>
+
+@*<script src="~/Scripts/Index/_index_reg.js"></script>
+    <div class="divleft_Index">
+         @Html.Label("","UserName",new { @class="Label"})
+         @Html.TextBox("UserName", "", new { @class = "TextBox" })<br /><br />
+         @Html.Label("","EnName",new { @class="Label"})
+         @Html.TextBox("EnName", "", new { @class = "TextBox" })<br /><br />
+         @Html.Label("","CHName",new { @class="Label"})
+         @Html.TextBox("CHName", "", new { @class = "TextBox" })<br /><br />
+         @Html.Label("","PassWord",new { @class="Label"})
+         @Html.TextBox("PassWord", "", new { @class = "TextBox" })<br /><br />
+         @Html.Label("","Department",new { @class="Label"})
+         @Html.TextBox("Department", "", new { @class = "TextBox" })<br /><br />
+         @Html.Label("","TelNumber",new { @class="Label"})
+         @Html.TextBox("TelNumber", "", new { @class = "TextBox" })<br /><br />
+         @Html.Label("","EmailAddress",new { @class="Label"})
+         @Html.TextBox("EmailAddress", "", new { @class = "TextBox" })<br /><br />
+         @Html.Label("","Description",new { @class="Label"})
+         @Html.TextBox("Description", "", new { @class = "TextBox" })<br /><br />
+         @Html.Label("","UserGroup",new { @class="Label"})
+         @Html.TextBox("UserGroup", "", new { @class = "TextBox" })<br /><br />
+         @Html.Label("","RightLevel",new { @class="Label"})
+         @Html.TextBox("RightLevel", "", new { @class = "TextBox" })<br /><br />
+         @Html.Label("","IsEmployeeID",new { @class="Label"})
+         @Html.TextBox("IsEmployeeID", "", new { @class = "TextBox" })<br /><br />
+         @Html.Label("","Shift",new { @class="Label"})
+         @Html.TextBox("Shift", "", new { @class = "TextBox" })<br /><br />
+         @Html.Label("","BU",new { @class="Label"})
+         @Html.TextBox("BU", "", new { @class = "TextBox" })<br /><br />
+        <button id="AddNew" class="Button_Index" name="AddNew" onclick="bt_click(this.id)">AddNew</button>
+        <button id="Update" class="Button_Index" name="Update" onclick="bt_click(this.id)">Update</button>
+        <button id="Delete" class="Button_Index" name="Delete" onclick="bt_click(this.id)">Delete</button>
+        <button id="Excel" class="Button_Index" name="Excel" onclick="bt_click(this.id)">Excel</button>
+    </div>
+    <div class="divright_Index">
+        <Table id="myDataTable" class="table"></Table>
+    </div>*@
+
+
+

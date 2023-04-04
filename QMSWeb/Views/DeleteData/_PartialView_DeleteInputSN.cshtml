@@ -1,0 +1,61 @@
+﻿@model QMSWeb.Model.DeleteData
+
+<script src="~/Scripts/DeleteData/_PartialView_DeleteInputSN.js"></script>
+
+ <div class="divleft_CSN">   
+        @{
+            <br />
+            <div style="width:340px;height:20px;display:inline-block;margin:3px;text-align:center;">
+               <a style="font-size:12px;font-family:'Microsoft YaHei';">同时删除QSMS_AOI数据</a>
+               <input type="checkbox" id="chkQSMS_AOI" style="display: inline-block;height:10px;"/>
+           </div>
+            <br />
+           var xmlList = Model.xmlList;
+           var jsonxmlList = Newtonsoft.Json.JsonConvert.SerializeObject(Model.xmlList);
+           if (!string.IsNullOrEmpty(jsonxmlList))
+           {
+               foreach (var item in xmlList)
+               { 
+                  string Item = item.Item;
+                  string ItemType = item.ItemType;
+                  <br />
+                  if (ItemType.ToLower() == "combobox")
+                  {
+                     @Html.Label("", Item, new { @class = "DLabel_D" });
+                     <select id="@Item"></select>
+                  }
+                  else if (ItemType.ToLower() != "")
+                  {
+                      @Html.Label("", Item, new { @class = "DLabel_D" });
+                      string strItem = Item;
+                      <input id="@strItem" class="easyui-textbox TextBox_DS"/>
+                  }           
+               }
+            }
+            
+            <input id="limitQty" type="hidden" value="@Model.limitQty"/>
+            <input id="xmlList" type="hidden" value="@jsonxmlList"/>
+            
+            <button id="Delete" class="ButtonDelete" name="Delete" onclick="bt_click()">删除</button>
+            <br /><br /><br /><br /><br /><br /><br /><br />
+            <div class="div_fp_MD">
+                 <br />
+                  @Html.TextBox("filePath", "", new { @class = "f_TextBox"})
+                 <button id="Upload" name="btnUpload" class="ButtonDelete" onclick="btUpload()">批量删除</button>
+                 <br /><br />
+                 <a class="href" href="javascript:dowloadTemplate()">[ Download Template ]</a>          
+            </div>
+        }
+
+</div>
+
+<div id="divmsg" class="divRight_CSN">消息:</div>
+
+
+
+
+
+
+
+
+

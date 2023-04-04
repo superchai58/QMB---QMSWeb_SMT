@@ -1,0 +1,91 @@
+﻿@model QMSWeb.Model.QueryData
+
+<script src="~/Scripts/QueryData/_PartialView_SpecialItem.js"></script>
+<script src="~/Scripts/jquery.easyui.min.js"></script>
+
+<div id="el" class="easyui-layout" style="width:100%;height:475px">
+     <div data-options="region:'north',title:'',split:false" style="height:45px;">
+        <div style="text-align:center;height:30px;">
+        <div style="height:30px;line-height:30px;text-align:left;border:1px solid #b7d2ff;border-radius:4px;display:inline-block;background-color:lightgreen">
+            &emsp;DB:&emsp;
+            <input type="radio" name="radioDB" checked="checked" value = "Current">Current
+            <input type="radio" name="radioDB" value = "History">History &emsp;
+        </div>
+        <div style="height:30px;line-height:30px;margin:3px;text-align:left;border:1px solid #b7d2ff;border-radius:4px;display:inline-block;background-color:lightgreen">
+            &emsp;SN:&emsp;
+            <input type="radio" name="radioSN" checked="checked" value = "One">ByOne
+            <input type="radio" name="radioSN" value = "Batch">ByBatch &emsp;
+        </div>
+        <div style="height:30px;line-height:30px;margin:3px;text-align:left;border:1px solid #b7d2ff;border-radius:4px;display:inline-block;background-color:lightgreen">
+            &emsp;Option:&emsp;
+            <input type="radio" name="radioOption" checked="checked" onclick="radioOPT_Click(this.value)" value = "SNTrace">SNTrace
+            <input type="radio" name="radioOption" onclick="radioOPT_Click(this.value)" value = "BaseData">BaseData
+            <input type="radio" name="radioOption" onclick="radioOPT_Click(this.value)" value = "Station">StationData &emsp;
+        </div>
+        </div>
+     </div>
+    <div data-options="region:'west',title:'',split:true" style="width:370px;">
+        <div style="text-align:left;width:270px;float:left;margin-left:2px">
+            @{
+                <br />
+                 var xmlList = Model.xmlList;
+                 var jsonxmlList = Newtonsoft.Json.JsonConvert.SerializeObject(Model.xmlList);
+                 if (!string.IsNullOrEmpty(jsonxmlList))
+                 {
+                     foreach (var item in xmlList)
+                     { 
+
+                       string Item = item.Item;
+                       string ItemType = item.ItemType;
+                       @Html.Label("", Item, new { @class = "LabelBase" });
+        
+                       if (ItemType.ToLower() == "combobox")
+                       {
+                          <select id="@Item"></select>
+                       }
+                       else if (ItemType.ToLower() != "")
+                       {
+                          if (ItemType.ToLower() == "datetime")
+                          {
+                             @Html.TextBox(Item, "", new { @class = "easyui-datetimebox", type = "text" });
+                          }
+                          else if (ItemType.ToLower() == "date")
+                          {
+                             @Html.TextBox(Item, "", new { @class = "easyui-datebox",type = "text"});
+                          }
+                          else if (ItemType.ToLower() == "time")
+                          {
+                             @Html.TextBox(Item, "", new { @class = "TextBox", type = "time" });
+                          }
+                          else
+                          {
+                              string strItem=Item;
+                              <input id="@strItem" class="easyui-textbox TextBox_Q"/>
+                           }
+                         }
+                       }
+                      <input id="xmlList" type="hidden" value="@jsonxmlList"/>
+                      <input id="limitQty" type="hidden" value="@Model.limitQty"/>
+                      @Html.TextBox("Station", "", new { type = "hidden"});
+                    }
+             }
+            <div style="text-align:center;display:inline-block;width:290px">
+                <br />
+                <button id="submitQ" name="btnQuery" class="ButtonQuery" onclick="btnBase_click(this.id)">查询</button>
+                <button id="submitE" name="btnExcel" class="Buttonexport" onclick="btnBase_click(this.id)">导出</button>
+            </div> <br /><br /><br /><br />
+             <div class="div_fp_BS">
+             <br />
+             @Html.TextBox("filePath", "", new { @class = "f_TextBox_BS"})
+             <button id="submitU" name="btnUpload" class="ButtonUpload" onclick="btnUpload()">上传</button>
+             <br />
+             <div class="div_msg_BS"><label id="lblmsg" class="bs_Label">msg......</label></div>
+      
+             <a class="href" href="javascript:dowloadTemplate()">[ Download Template ]</a>
+        </div>
+         </div>
+    </div>
+    <div data-options="region:'center',title:'',split:true" style="padding:5px;">
+        <Table id="myDataTable" class="table"></Table>
+    </div>
+</div>

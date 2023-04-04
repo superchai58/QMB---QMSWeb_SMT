@@ -1,0 +1,61 @@
+﻿@model QMSWeb.Model.SpecialItem
+
+<script src="~/Scripts/SpecialItem/_PartialView_LockSN.js?v=20200826"></script>
+<div id="el" class="easyui-layout" style="width:100%;height:520px;">
+  <div data-options="region:'west',title:'Define Zone',split:true" style="width:380px;">
+     @{
+         <br />
+         <div style="text-align:center;font-family:'Microsoft YaHei UI'">
+             <input type="radio" name="Lockradio" checked="checked" value = "Lock" onclick="radio_Click(this.value)">Normal
+             <input type="radio" name="Lockradio" value = "LockModel" onclick="radio_Click(this.value)">Model
+             <input type="radio" name="Lockradio" value = "LockPacking" onclick="radio_Click(this.value)">Packing
+         </div>
+           var xmlList = Model.xmlList;
+           var jsonxmlList = Newtonsoft.Json.JsonConvert.SerializeObject(Model.xmlList);
+           if (!string.IsNullOrEmpty(jsonxmlList))
+           {
+              foreach (var item in xmlList)
+              { 
+                  <br />
+                  string Item = item.Item;
+                  string ItemType = item.ItemType;
+                  if (ItemType.ToLower() == "combobox")
+                  {
+                     @Html.Label("", Item, new { @class = "TSLabel" });
+                      <select id="@Item"></select>
+                   }
+                  else if (ItemType.ToLower() != "" && ItemType.ToLower() != "button")
+                   {
+                       @Html.Label("", Item, new { @class = "TSLabel" });
+                       string strItem=Item;
+                       <input id="@strItem" class="easyui-textbox TextBox_SI"/>
+                    }           
+                }
+                <input id="xmlList" type="hidden" value="@jsonxmlList"/>
+                <input id="limitQty" type="hidden" value="@Model.limitQty"/>
+               }
+               <br /><br />
+               <div style="text-align:center;width:350px;margin:10px">
+                   <button id="Lock" class="ButtonLock" name="Lock" onclick="bt_click(this.id)">锁定</button>
+                   <button id="UnLock" class="ButtonUnLock" name="UnLock" onclick="bt_click(this.id)">解锁</button>
+               </div>
+              <br />
+           <div class="div_fp_LS">
+               <br />
+               @Html.TextBox("filePath", "", new { @class = "f_TextBox_LS"})
+               <br /><br />
+               <div style="text-align:center;">
+                   <button id="Lockbatch" class="ButtonLock" name="Lock" onclick="bt_click(this.id)">批量锁定</button>
+                   <button id="UnLockbatch" class="ButtonUnLock" name="UnLock" onclick="bt_click(this.id)">批量解锁</button>
+               </div><br />
+               <a class="href" href="javascript:dowloadTemplate()">[ Download Template ]</a>          
+           </div>
+         }
+        <br />&emsp;消息:
+        &emsp;<div id="divmsg" class="div_msg_LS"></div>
+      <input id="LockSNFail" type="hidden" value=""/>
+  </div>
+  <div data-options="region:'center',title:'Data Zone',split:false" style="padding:5px;">
+        <Table id="myDtTable" class="table"></Table>
+   </div>
+</div>

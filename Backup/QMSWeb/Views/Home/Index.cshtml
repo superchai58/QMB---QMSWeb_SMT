@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";  
+}
+<script src="~/Scripts/Index/_index.js"></script>
+
+<body class="body">
+    <br /><br />
+    <div class="index">
+        <br />
+        <select id="BU"></select>
+        <br /><br />
+        <input id="username" type="text" class="input_uid" value="@ViewBag.username" autocomplete="off" placeholder="用户名">
+        <br /><br />
+        <input id="password" type="password" class="input_pw" value="@ViewBag.password" autocomplete="off" placeholder="密码" onkeydown="keydown(event)">
+        <br /><br />
+        <button id="submit" name="btnSub" class="indexbutton" onclick="btsubmit()">登录</button>
+        <br /><br />
+        <div>
+            <a style="font-size:12px;font-family:'Microsoft YaHei';color:blue">记住用户名,密码(30天)</a>
+            <input type="checkbox" id="remember" style="display: inline-block;height:10px;"/>
+        </div>
+    </div>
+    <br /><br />
+    <div style="text-align:center;color:whitesmoke;font-family:'Microsoft YaHei';">
+        登录后,若遇系统异常问题,请联系QMS处理!    
+    </div>
+   <input id="chkboxstatus" type="hidden" value="@ViewBag.remember"/>
+</body>

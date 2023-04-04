@@ -1,0 +1,78 @@
+﻿@model QMSWeb.Model.QueryData
+
+<script src="~/Scripts/QueryData/_PartialView_R.js"></script>
+<link href="~/Content/Template.css" rel="stylesheet" />
+<link href="~/Content/easyui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.easyui.min.js"></script>
+<script src="~/Scripts/basic.js"></script>
+<link href="~/Content/icon.css" rel="stylesheet" />
+
+<div id="el" class="easyui-layout" style="width:100%;height:500px;">
+    <div data-options="region:'west',title:'',split:true" style="width:240px;">
+        <div style="padding-left:5px">
+        @{
+           var xmlList = Model.xmlList;
+           var jsonxmlList = Newtonsoft.Json.JsonConvert.SerializeObject(Model.xmlList);
+           if (!string.IsNullOrEmpty(jsonxmlList))
+           {
+              foreach (var item in xmlList)
+              { 
+                 string Item = item.Item;
+                 string ItemType = item.ItemType;
+                 @Html.Label("", Item, new { @class = "Label" });
+                 if (ItemType.ToLower() == "combobox")
+                  {
+                     <select id="@Item"></select>
+                  }
+                  else if (ItemType.ToLower() != "")
+                  {
+                     if (ItemType.ToLower() == "datetime")
+                     {
+                         string dtItem=Item;
+                        // @Html.TextBox(Item, "", new { @class = "easyui-datetimebox", type = "text" });
+                         <input class="easyui-datetimebox" id="@dtItem" data-options="onShowPanel:function(){$(this).datetimebox('spinner').timespinner('setValue','08:00:00');}">
+                     }
+                     else if (ItemType.ToLower() == "date")
+                     {
+                       @Html.TextBox(Item, "", new { @class = "easyui-datebox",type = "text"});
+                     }
+                     else
+                     {
+                       string strItem=Item;
+                       <input id="@strItem" class="easyui-textbox TextBox_Q"/>
+                     }
+                 }
+             }
+            <input id="xmlList" type="hidden" value="@jsonxmlList"/>
+          }
+        }
+         <input id="QueryInterval" type="hidden" value="@Model.queryInterval"/>
+         <div style="text-align:center;display:inline-block;width:220px"><br />
+              <button id="submitQ" name="btnQuery" class="ButtonQuery" onclick="btn_click(this.id)">查询</button>
+              <button id="submitE" name="btnExcel" class="Buttonexport" onclick="btn_click(this.id)">导出</button>
+         </div>
+       </div>
+    </div>
+    <div data-options="region:'center',title:'',split:true" style="padding:5px">
+        <div id="Top5ErrCode" style="width: 300px;height:200px;text-align:left;display:inline-block;margin:3px;"></div>
+        <div id="Top5Location" style="width: 300px;height:200px;text-align:left;display:inline-block;margin:3px;"></div>
+        <div id="Top5FalseCall" style="width: 300px;height:200px;text-align:left;display:inline-block;margin:3px;"></div>
+        <Table id="dtList" class="table"></Table><br />
+        <Table id="dtErrCodeList" class="table"></Table><br />
+        <Table id="dtdesc" class="table"></Table>
+    </div>
+</div>
+
+@*<div class="divright">
+    <div id="Top5ErrCode" style="width: 300px;height:200px;text-align:left;display:inline-block;margin:3px;"></div>
+    <div id="Top5Location" style="width: 300px;height:200px;text-align:left;display:inline-block;margin:3px;"></div>
+    <div id="Top5FalseCall" style="width: 300px;height:200px;text-align:left;display:inline-block;margin:3px;"></div>
+    <Table id="dtList" class="table"></Table>
+    <br />
+    <Table id="dtErrCodeList"></Table>
+    <br />
+    <Table id="dtdesc"></Table>
+</div>*@
+
+
+

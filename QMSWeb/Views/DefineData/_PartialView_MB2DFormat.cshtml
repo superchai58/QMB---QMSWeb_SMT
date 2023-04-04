@@ -1,0 +1,42 @@
+﻿@model QMSWeb.Model.DefineData
+
+<script src="~/Scripts/DefineData/_PartialView_MB2DFormat.js"></script>
+
+<div id="el" class="easyui-layout" style="width:100%;height:480px;">
+    <div data-options="region:'west',title:'Define Zone',split:true" style="width:350px;">
+        @{
+            var xmlList = Model.xmlList;
+            var jsonxmlList = Newtonsoft.Json.JsonConvert.SerializeObject(Model.xmlList);
+            if (!string.IsNullOrEmpty(jsonxmlList))
+            {
+                foreach (var item in xmlList)
+                { 
+                    string Item = item.Item;
+                    string ItemType = item.ItemType;
+                    <br />
+                    if (ItemType.ToLower() == "combobox")
+                    {
+                        @Html.Label("", Item, new { @class = "DLabel" });
+                        <select id="@Item"></select>
+                    }
+                    else if (ItemType.ToLower() != "")
+                    {
+                        @Html.Label("", Item, new { @class = "DLabel" });
+                        string strItem=Item;
+                        <input id="@strItem" class="easyui-textbox TextBox_MD"/>
+                    }           
+                 }
+                 <input id="xmlList" type="hidden" value="@jsonxmlList"/>
+              }
+              <br /><br />
+              <div style="text-align:center;margin:10px">
+                   <button id="AddNew" class="ButtonAdd" name="AddNew" onclick="bt_click(this.id)">添加</button>&emsp;
+                   <button id="Update" class="ButtonUpd" name="Update" onclick="bt_click(this.id)">更新</button>&emsp;
+                   <button id="Delete" class="ButtonDel" name="Delete" onclick="bt_click(this.id)">删除</button>
+              </div>
+         }
+         </div>
+    <div data-options="region:'center',title:'Data Zone',split:true" style="padding:5px;">
+            <Table id="myDtTable" class="table"></Table>
+    </div>
+</div>

@@ -1,0 +1,73 @@
+﻿@model QMSWeb.Model.DefineData
+
+<script src="~/Scripts/DefineData/_PartialView_UserRight.js"></script>
+
+<div id="el" class="easyui-layout" style="width:100%;height:540px;">
+    <div data-options="region:'west',title:'Define Zone',split:true" style="width:350px;">
+        @{
+            var xmlList = Model.xmlList;
+            var jsonxmlList = Newtonsoft.Json.JsonConvert.SerializeObject(Model.xmlList);
+            if (!string.IsNullOrEmpty(jsonxmlList))
+            {
+                foreach (var item in xmlList)
+                { 
+                    string Item = item.Item;
+                    string ItemType = item.ItemType;
+                    <br />
+                    if(Item=="UserName")
+                    {
+                        continue;
+                    }
+                    if (ItemType.ToLower() == "combobox")
+                    {
+                        @Html.Label("", Item, new { @class = "DLabel" });
+                        <select id="@Item"></select>
+                    }
+                    else if (ItemType.ToLower() != "")
+                    {
+                        @Html.Label("", Item, new { @class = "DLabel" });
+                        string strItem=Item;
+                        <input id="@strItem" class="easyui-textbox TextBox_MD"/>
+                    }           
+                 }
+                 <input id="xmlList" type="hidden" value="@jsonxmlList"/>
+              }
+            <div style="height:380px;width:300px;margin:20px;border:1px solid #b7d2ff;border-radius:4px;"><Table id="dtAppNameInfo" class="table"></Table></div>
+         }
+         </div>
+    <div data-options="region:'center',title:'Data Zone',split:true" style="padding:5px;">
+        @{
+            if (!string.IsNullOrEmpty(jsonxmlList))
+            {
+                foreach (var item in xmlList)
+                { 
+                    string Item = item.Item;
+                    string ItemType = item.ItemType;
+                    if(Item=="UserName")
+                    {
+                        string strItemU = Item;
+                        @Html.Label("", Item, new { @class = "DLabel" });
+                        <select id="@strItemU"></select>
+                    }
+                 }
+              }
+         }
+         &emsp;<button id="AddNew" class="ButtonAdd" name="AddNew" onclick="bt_click(this.id)">添加</button>
+         &emsp;<button id="Delete" class="ButtonDel" name="Delete" onclick="bt_click(this.id)">删除</button>
+         &emsp;<button id="Refresh" class="ButtonUpd" name="Query" onclick="bt_click(this.id)">刷新</button>
+       
+         <br />defined_Right<br />
+         <div style ="width:95%;height:200px;border:1px solid #b7d2ff;border-radius:4px;">
+             <Table id="dtdefinedRight" class="table"></Table>
+         </div>
+         undefined_Right<br />
+         <div style ="width:95%;height:180px;border:1px solid #b7d2ff;border-radius:4px;">
+            <Table id="dtundefinedRight" class="table"></Table>
+         </div><br />
+         @Html.Label("", "SourceID", new { @class = "DLabel" })
+         <input id="SourceID" class="easyui-textbox TextBox_MD"/>
+         @Html.Label("", "TargetID", new { @class = "DLabel" })
+         <input id="TargetID" class="easyui-textbox TextBox_MD" />
+         &emsp;<button id="Copy" class="ButtonCopy" name="Query" onclick="bt_click(this.id)">拷贝</button>
+    </div>
+</div>

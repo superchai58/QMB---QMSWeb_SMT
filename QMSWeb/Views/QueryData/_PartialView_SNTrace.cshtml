@@ -1,0 +1,67 @@
+﻿@using System.Data
+@model QMSWeb.Model.QueryData
+
+<script src="~/Scripts/QueryData/_PartialView_SNTrace.js"></script>
+<script src="~/Scripts/jquery.easyui.min.js"></script>
+<div id="el" class="easyui-layout" style="width:100%;height:520px;">
+    <div data-options="region:'center',title:'',split:true" style="padding:5px">
+        Trace info:<br /><br />
+        <div style="width:99%;height:450px;margin:1px;"><Table id="dtTraceinfo" class="table"></Table></div>
+    </div>
+    <div data-options="region:'west',title:'',split:true" style="width:280px;">
+        <div style="padding-left:5px">
+         @{
+             var xmlList = Model.xmlList;
+             var jsonxmlList = Newtonsoft.Json.JsonConvert.SerializeObject(Model.xmlList);
+             if (!string.IsNullOrEmpty(jsonxmlList))
+             {
+               foreach (var item in xmlList)
+               { 
+                  string Item = item.Item;
+                  string ItemType = item.ItemType;
+                  if (ItemType.ToLower() == "combobox")
+                  {
+                     @Html.Label("", Item, new { @class = "Label" });
+                      <select id="@Item"></select>
+                  }
+                  else if (ItemType.ToLower() != "" && ItemType.ToLower() != "button")
+                  {
+                      @Html.Label("", Item, new { @class = "Label" });
+                      string strItem=Item;
+                      <input id="@strItem" class="easyui-searchbox TextBox_ST"/>
+                  }           
+                }
+                <input id="xmlList" type="hidden" value="@jsonxmlList"/>
+                <input id="hidBarCode" type="hidden" value=""/>
+              }
+              <br /><br />
+              <div style="text-align:center;margin:10px">
+                 <button id="submitQ" name="btnQuery" class="ButtonQuery" onclick="btn_click(this.id)">查询</button>
+                 <button id="submitE" name="btnExcel" class="Buttonexport" onclick="btn_click(this.id)">导出</button>
+              </div>
+          }
+             <br /><br /><br /><br /><br />
+        <div id="ICTTestData" class="div_msg_ICTdata"></div>
+        </div>
+   </div>
+    <div data-options="region:'east',title:'',split:true" style="padding:5px;width:45%;">
+        Station info:
+        <div class="sf_topmenu clearfix">
+         <ul>
+          @{
+            int i = 1;
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            DataTable dt = Model.dtMenulist;
+            for(int j=0;j<dt.Rows.Count;j++)
+            {
+                sb.Append("<li><a href=\"javascript:void(0)\">" + dt.Rows[j][0].ToString().Trim() + "</a></li>");
+                i++;
+            }
+          }
+          @Html.Raw(sb.ToString())
+        </ul> 
+       </div>
+       <div id="tabs" class="sf_frame easyui-tabs" style="width:99%;height:450px"></div>
+          <input type="hidden" id="hidOpenMenuName"/>
+    </div>
+</div>

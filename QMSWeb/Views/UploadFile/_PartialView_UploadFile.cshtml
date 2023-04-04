@@ -1,0 +1,29 @@
+﻿@using System.Data;
+@using System.Xml;
+@model QMSWeb.Model.UploadFile
+
+<script src="~/Scripts/UploadFile/_PartialView_UploadFile.js"></script>
+<script src="~/Scripts/jquery.easyui.min.js"></script>
+
+
+<div>
+    @{
+       var xmlList = Model.xmlList;
+       var jsonxmlList = Newtonsoft.Json.JsonConvert.SerializeObject(Model.xmlList);
+       @Html.TextBox("xmlList", @jsonxmlList, new { @type = "hidden" })
+     }
+ </div>
+
+<div id="el" class="easyui-layout" style="width:99%;height:85px;">
+    <div data-options="region:'north',title:'',split:false" style="height:85px;">
+       <br />
+       &emsp;@Html.TextBox("filePath", "", new { @class = "f_TextBox_UF"})
+       <button id="submitU" name="btnUpload" class="ButtonUpload" onclick="btnUpload()">上传</button>
+       <br /><br />
+       &emsp;FilePath:<span id="FilePath" style="font-family:'Microsoft YaHei UI';"></span><span id="FileFormat" style="font-family:'Microsoft YaHei UI'"></span>
+    </div>
+</div>
+<br /><br />
+<div"><Table id="myDataTable" class="table"></Table></div>
+
+

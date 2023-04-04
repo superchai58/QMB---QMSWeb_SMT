@@ -1,0 +1,39 @@
+﻿@model QMSWeb.Model.DeleteData
+
+<script src="~/Scripts/DeleteData/_PartialView_DeleteWO.js"></script>
+
+
+<div">
+         @{
+           var xmlList = Model.xmlList;
+           var jsonxmlList = Newtonsoft.Json.JsonConvert.SerializeObject(Model.xmlList);
+           if (!string.IsNullOrEmpty(jsonxmlList))
+           {
+              <br />
+              foreach (var item in xmlList)
+              { 
+                  string Item = item.Item;
+                  string ItemType = item.ItemType;
+                  @Html.Label("", Item, new { @class = "DLabel" });
+                  if (ItemType.ToLower() == "combobox")
+                  {
+                    
+                      <select id="@Item"></select>
+                   }
+                  else 
+                   {
+                        string strItem=Item;
+                        <input id="@strItem" class="easyui-textbox TextBox_M" type="text" />
+                    }           
+                }
+                <input id="xmlList" type="hidden" value="@jsonxmlList"/>
+               }
+         }
+         <button id="Delete" class="ButtonDel" name="Delete" onclick="bt_click()">删除</button>
+         <br /><br /> &emsp; &emsp; &emsp; &emsp;&emsp;&emsp;
+         <div style="width:200px;height:18px;display:inline-block;margin:3px;text-align:center;">
+            <a style="font-size:12px;font-family:'Microsoft YaHei';">Delete QSMS</a>
+            <input type="checkbox" id="DelQSMS" style="display: inline-block;height:10px;"/>
+         </div><br /><br />
+        <div id="WOinfo" class="div_msg_DelWO"></div>
+</div>

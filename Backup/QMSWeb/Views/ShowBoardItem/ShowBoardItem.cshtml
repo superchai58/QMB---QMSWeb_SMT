@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "ShowBoardItem";
+    Layout = "~/Views/Shared/_Layout.cshtml";  
+}
+
+<script src="~/Scripts/ShowBoardItem/_ShowBoardItem.js"></script>
+
+<span id="UserID" class="span" style="display:none">@ViewData["UID"]</span>
+<span id="PU" class="span" style="display:none">@ViewData["PU"]</span>
+
+<div style="text-align:center;font-size:15px;font-family:'Microsoft YaHei';color:blue">常用看板链接</div>
+<br />
+<div"><Table id="myDataTable" class="table"></Table></div>

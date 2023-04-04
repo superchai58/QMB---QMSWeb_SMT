@@ -1,0 +1,76 @@
+﻿@model QMSWeb.Model.QueryData
+
+<script src="~/Scripts/QueryData/_PartialView_SpecialItem.js"></script>
+<script src="~/Scripts/jquery.easyui.min.js"></script>
+
+<div id="el" class="easyui-layout" style="width:100%;height:475px">
+    <div data-options="region:'west',title:'',split:true" style="width:240px;">
+        <div style="padding-left:5px">
+            @{
+                 var xmlList = Model.xmlList;
+                 var jsonxmlList = Newtonsoft.Json.JsonConvert.SerializeObject(Model.xmlList);
+                 if (!string.IsNullOrEmpty(jsonxmlList))
+                 {
+                     foreach (var item in xmlList)
+                     { 
+                       string Item = item.Item;
+                       string ItemType = item.ItemType;
+                       if (Item != "ObjectName")
+                       {
+                          @Html.Label("", Item, new { @class = "Label" });
+                       }
+                       if (ItemType.ToLower() == "combobox")
+                       {
+                          <select id="@Item"></select>
+                       }
+                       else if (ItemType.ToLower() != "")
+                       {
+                          if (ItemType.ToLower() == "datetime")
+                          {
+                             string dtItem=Item;
+                             <input class="easyui-datetimebox" id="@dtItem" data-options="onShowPanel:function(){$(this).datetimebox('spinner').timespinner('setValue','08:00:00');}">
+                          }
+                          else if (ItemType.ToLower() == "date")
+                          {
+                             @Html.TextBox(Item, "", new { @class = "easyui-datebox",type = "text"});
+                          }
+                          else if (ItemType.ToLower() == "time")
+                          {
+                             @Html.TextBox(Item, "", new { @class = "TextBox", type = "time" });
+                          }
+                          else
+                          {
+                             string strItem=Item;
+                             if (strItem == "ObjectName")
+                             {
+                                @Html.TextBox(Item, "", new { @type = "hidden" })
+                             }
+                             else
+                             {
+                                <input id="@strItem" class="easyui-textbox TextBox_Q"/>
+                             }
+                           }
+                         }
+                       }
+                      <input id="xmlList" type="hidden" value="@jsonxmlList"/>
+                      <input id="QueryInterval" type="hidden" value="@Model.queryInterval"/>
+                    }
+             }
+            <br /><br />
+            <div style="text-align:left;display:inline-block;border:1px solid #b7d2ff;border-radius:4px;width:150px;background-color:lightgreen">
+                <br /><input type="radio" name="radioGroupOption" checked="checked" value = "OPID">OPID
+                <br /><input type="radio" name="radioGroupOption" value = "TestStation">Station
+                <br /><input type="radio" name="radioGroupOption" value = "SingleFullTest">Single/FullTest 
+                <br /><input type="radio" name="radioGroupOption" value = "Machine">Machine <br /><br />
+           </div>
+            <div style="text-align:center;display:inline-block;width:220px">
+                <br />
+                <button id="submitQ" name="btnQuery" class="ButtonQuery" onclick="btnFVS_click(this.id)">查询</button>
+                <button id="submitE" name="btnExcel" class="Buttonexport" onclick="btnFVS_click(this.id)">导出</button>
+            </div> 
+         </div>
+    </div>
+    <div data-options="region:'center',title:'',split:true" style="padding:5px;">
+        <Table id="myDataTable" class="table"></Table>
+    </div>
+</div>

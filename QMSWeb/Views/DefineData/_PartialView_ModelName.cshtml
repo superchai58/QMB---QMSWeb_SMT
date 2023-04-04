@@ -1,0 +1,67 @@
+﻿@model QMSWeb.Model.DefineData
+
+<script src="~/Scripts/DefineData/_PartialView_ModelName.js"></script>
+<div>
+    @Html.Label("", "Model", new { @class = "DLabel" })
+    <select id="Model" class="DSelect"></select>
+    &emsp;&emsp;
+    <label id="PreViewMBSN" class="DLabel"></label>
+</div>
+<div class="div_M">
+@{
+    <br />
+    int cnt = 1;
+    var xmlList = Model.xmlList;
+    var jsonxmlList = Newtonsoft.Json.JsonConvert.SerializeObject(Model.xmlList);
+    if (!string.IsNullOrEmpty(jsonxmlList))
+    {
+        foreach (var item in xmlList)
+        { 
+            string Item = item.Item;
+            string ItemType = item.ItemType;
+            if(cnt==5)
+            {
+                cnt = 1;
+               <br />
+            }
+            if (ItemType.ToLower() == "combobox")
+            {
+                @Html.Label("", Item, new { @class = "DLabel" });
+                <select id="@Item"></select>
+            }
+            else if (ItemType.ToLower() != "")
+            {
+                @Html.Label("", Item, new { @class = "DLabel" });
+                if (ItemType.ToLower() == "datetime")
+                {
+                    @Html.TextBox(Item, "", new { @class = "easyui-datetimebox", type = "text" });
+                }
+                else if (ItemType.ToLower() == "date")
+                {
+                    @Html.TextBox(Item, "", new { @class = "easyui-datebox", type = "text" });
+                }
+                else
+                {
+                  string strItem=Item;
+                 <input id="@strItem" class="easyui-textbox TextBox_M"/>
+                }
+            }
+            cnt++;        
+        }
+       <input id="xmlList" type="hidden" value="@jsonxmlList"/>
+    }
+     <br /><br />
+}
+</div>
+<div style="text-align:center;">
+        <button id="AddNew" class="ButtonAdd" name="AddNew" onclick="bt_click(this.id)">添加</button>
+        <button id="Update" class="ButtonUpd" name="Update" onclick="bt_click(this.id)">更新</button>
+        <button id="Delete" class="ButtonDel" name="Delete" onclick="bt_click(this.id)">删除</button>
+        <button id="Excel" class="Buttonexport" name="Excel" onclick="bt_click(this.id)">导出</button>
+</div>
+<div class="div_MT">
+     <Table id="myDtTable" class="table"></Table>
+</div>
+
+
+

@@ -1,0 +1,82 @@
+﻿@model QMSWeb.Model.QueryData
+
+<script src="~/Scripts/QueryData/_PartialView_B.js"></script>
+<link href="~/Content/Template.css" rel="stylesheet" />
+
+@{
+    var xmlList = Model.xmlList;
+    var jsonxmlList = Newtonsoft.Json.JsonConvert.SerializeObject(Model.xmlList);
+    if (!string.IsNullOrEmpty(jsonxmlList))
+    {
+        foreach (var item in xmlList)
+        { 
+            string Item = item.Item;
+            string ItemType = item.ItemType;
+            string DataSource = item.DataSource;
+            if (Item != "ObjectName")
+            {
+                @Html.Label("", Item, new { @class = "Label" });
+            }
+            if (ItemType.ToLower() == "combobox")
+            {
+                <select id="@Item"></select>
+            }
+            else if (ItemType.ToLower() != "")
+            {
+                if (ItemType.ToLower() == "datetime")
+                {
+                    @Html.TextBox(Item, "", new { @class = "easyui-datetimebox", type = "text" });
+                }
+                else if (ItemType.ToLower() == "date")
+                {
+                    @Html.TextBox(Item, "", new { @class = "easyui-datebox",type = "text"});
+                }
+                else if (ItemType.ToLower() == "time")
+                {
+                    @Html.TextBox(Item, "", new { @class = "TextBox", type = "time" });
+                }
+                else
+                {
+                    //@Html.TextBox(Item, "", new { @class = "TextBox" });
+                  string strItem=Item;
+                  if (strItem == "ObjectName")
+                    {
+                        string strItemobj = Item;
+                        @Html.TextBox("ObjectName",DataSource, new { @type = "hidden" })
+                    }
+                    else
+                    {
+                        <input id="@strItem" class="easyui-textbox TextBox_Q"/>
+                    }
+                }
+            }
+        }
+     }
+}
+
+@Html.TextBox("xmlList", @jsonxmlList, new { @type = "hidden" })
+@Html.TextBox("ObjectName", @ViewData["ObjectName"], new { @type = "hidden" })
+<div style="width:750px;display:inline-block">
+    <div class="div_item">
+         @Html.Label("", "**Notice:Only xls/xlsx supported,Limited Qty of attachment:", new { @class = "n_Label" })
+         <label id="limitQty" class="n_Label1">@Model.limitQty</label>
+         <a class="href" href="javascript:dowloadTemplate()">[ Download Template ]</a>
+     </div>
+     <div class="div_fp">
+        @Html.TextBox("filePath", "", new { @class = "f_TextBox"})
+        <button id="submitU" name="btnUpload" class="ButtonUpload" onclick="btnUpload()">上传</button>
+     </div>
+     <div class="div_msg">
+        <label id="lblmsg" class="l_Label">msg......</label>
+     </div>
+    <div class="div_bt">
+        <button id="submitQ" name="btnQuery" class="ButtonQuery" onclick="btn_click(this.id)">查询</button>
+        <button id="submitE" name="btnExcel" class="Buttonexport" onclick="btn_click(this.id)">导出</button>
+     </div>
+</div>
+<div class="div_table_B">
+    <table id="myDataTable" class="table"></table>
+</div>
+
+
+

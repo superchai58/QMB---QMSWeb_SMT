@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "SpecialItem";
+    Layout = "~/Views/Shared/_Layout.cshtml";  
+}
+@using System.Data;
+@model QMSWeb.Model.SpecialItem
+<script src="~/Scripts/SpecialItem/_home.js"></script>
+
+<span id="UserID" class="span" style="display:none">@ViewData["UID"]</span>
+<span id="PU" class="span" style="display:none">@ViewData["PU"]</span>
+<div class="sf_topmenu clearfix">
+    <ul>
+        @{
+            int i = 1;
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            DataTable dt = Model.dtMenulist;
+            for(int j=0;j<dt.Rows.Count;j++)
+            {
+                sb.Append("<li><a href=\"javascript:void(0)\">" + dt.Rows[j][0].ToString().Trim() + "</a></li>");
+                i++;
+            }
+        }
+        @Html.Raw(sb.ToString())
+    </ul> 
+</div>
+<div id="tabs" class="sf_frame easyui-tabs">
+@*     <div title="ModelName" class="tab_title" style="margin:0 auto">
+            @Html.Partial("_PartialModelName")
+     </div>   *@
+</div> 
+<input type="hidden" id="hidOpenMenuName"/>

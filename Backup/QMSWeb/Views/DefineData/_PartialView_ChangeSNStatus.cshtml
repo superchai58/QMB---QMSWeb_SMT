@@ -1,0 +1,47 @@
+﻿@model QMSWeb.Model.DefineData
+
+<script src="~/Scripts/DefineData/_PartialView_ChangeSNStatus.js"></script>
+
+ <div class="divMiddle">   
+        @{
+           var xmlList = Model.xmlList;
+           var jsonxmlList = Newtonsoft.Json.JsonConvert.SerializeObject(Model.xmlList);
+           if (!string.IsNullOrEmpty(jsonxmlList))
+           {
+               foreach (var item in xmlList)
+               { 
+                  string Item = item.Item;
+                  string ItemType = item.ItemType;
+                  <br />
+                  if (ItemType.ToLower() == "combobox")
+                  {
+                     @Html.Label("", Item, new { @class = "DLabel" });
+                     <select id="@Item"></select>
+                  }
+                  else if (ItemType.ToLower() != "")
+                  {
+                      @Html.Label("", Item, new { @class = "DLabel" });
+                    
+                      
+                      if (Item == "SN")
+                      {
+                          string strItemSN = Item;
+                          <input id="@strItemSN" class="easyui-textbox TextBox_MD"/>
+                      }
+                      else
+                      {
+                          string strItem = Item;
+                          <input id="@strItem" class="easyui-textbox TextBox_MD"/>
+                      }
+                  }           
+               }
+            }
+            <br /><br />
+            <input id="xmlList" type="hidden" value="@jsonxmlList"/>
+            <div style="text-align:center"><button id="Update" class="ButtonUpd" name="Update" onclick="bt_click()">更新</button></div>
+        }
+</div>
+
+
+
+

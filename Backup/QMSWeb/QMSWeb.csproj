@@ -1,0 +1,489 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{03EB3C77-3661-4CB8-88C0-F88B7A08D64B}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>QMSWeb</RootNamespace>
+    <AssemblyName>QMSWeb</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Encrypt, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Encrypt.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NPOI, Version=2.4.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.4.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.4.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.4.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WEBSDK, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\WEBSDK.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CommonHelper\DataTabletoXml.cs" />
+    <Compile Include="CommonHelper\Encrypt.cs" />
+    <Compile Include="CommonHelper\ExcelUtility.cs" />
+    <Compile Include="CommonHelper\GenXML.cs" />
+    <Compile Include="CommonHelper\LargeJson.cs" />
+    <Compile Include="CommonHelper\NpoiMemoryStream.cs" />
+    <Compile Include="CommonHelper\SqlHelper.cs" />
+    <Compile Include="CommonHelper\jsonToDataTable.cs" />
+    <Compile Include="CommonHelper\treeToJson.cs" />
+    <Compile Include="Controllers\DefineDataController.cs" />
+    <Compile Include="Controllers\DeleteDataController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\QueryDataController.cs" />
+    <Compile Include="Controllers\ShowBoardItemController.cs" />
+    <Compile Include="Controllers\SpecialItemController.cs" />
+    <Compile Include="Controllers\UploadDataController.cs" />
+    <Compile Include="Controllers\UploadFileController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Model\DefineData.cs" />
+    <Compile Include="Model\DeleteData.cs" />
+    <Compile Include="Model\easyTree.cs" />
+    <Compile Include="Model\HomeIndex.cs" />
+    <Compile Include="Model\ProSettings.cs" />
+    <Compile Include="Model\QueryData.cs" />
+    <Compile Include="Model\Settings.cs" />
+    <Compile Include="Model\ShowBoardItem.cs" />
+    <Compile Include="Model\SpecialItem.cs" />
+    <Compile Include="Model\UploadData.cs" />
+    <Compile Include="Model\UploadFile.cs" />
+    <Compile Include="Model\XmlList.cs" />
+    <Compile Include="Model\Xmlparameter.cs" />
+    <Compile Include="operateDB\DeleteDataDB.cs" />
+    <Compile Include="operateDB\Index.cs" />
+    <Compile Include="operateDB\DefineDataDB.cs" />
+    <Compile Include="operateDB\LoadSettings.cs" />
+    <Compile Include="operateDB\QueryDataDB.cs" />
+    <Compile Include="operateDB\ShowBoardItem.cs" />
+    <Compile Include="operateDB\SpecialItem.cs" />
+    <Compile Include="operateDB\UploadDataDB.cs" />
+    <Compile Include="operateDB\UploadFileDB.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Content\dataTables.min.css" />
+    <Content Include="Content\easyui.css" />
+    <Content Include="Content\icon.css" />
+    <Content Include="Content\icons\back.png" />
+    <Content Include="Content\icons\blank.gif" />
+    <Content Include="Content\icons\cancel.png" />
+    <Content Include="Content\icons\clear.png" />
+    <Content Include="Content\icons\cut.png" />
+    <Content Include="Content\icons\edit_add.png" />
+    <Content Include="Content\icons\edit_remove.png" />
+    <Content Include="Content\icons\filesave.png" />
+    <Content Include="Content\icons\filter.png" />
+    <Content Include="Content\icons\help.png" />
+    <Content Include="Content\icons\large_chart.png" />
+    <Content Include="Content\icons\large_clipart.png" />
+    <Content Include="Content\icons\large_picture.png" />
+    <Content Include="Content\icons\large_shapes.png" />
+    <Content Include="Content\icons\large_smartart.png" />
+    <Content Include="Content\icons\lock.png" />
+    <Content Include="Content\icons\man.png" />
+    <Content Include="Content\icons\mini_add.png" />
+    <Content Include="Content\icons\mini_edit.png" />
+    <Content Include="Content\icons\mini_refresh.png" />
+    <Content Include="Content\icons\no.png" />
+    <Content Include="Content\icons\ok.png" />
+    <Content Include="Content\icons\pencil.png" />
+    <Content Include="Content\icons\print.png" />
+    <Content Include="Content\icons\redo.png" />
+    <Content Include="Content\icons\reload.png" />
+    <Content Include="Content\icons\search.png" />
+    <Content Include="Content\icons\sum.png" />
+    <Content Include="Content\icons\tip.png" />
+    <Content Include="Content\icons\undo.png" />
+    <Content Include="Content\images\accordion_arrows.png" />
+    <Content Include="Content\images\blank.gif" />
+    <Content Include="Content\images\calendar_arrows.png" />
+    <Content Include="Content\images\combo_arrow.png" />
+    <Content Include="Content\images\datagrid_icons.png" />
+    <Content Include="Content\images\datebox_arrow.png" />
+    <Content Include="Content\images\layout_arrows.png" />
+    <Content Include="Content\images\linkbutton_bg.png" />
+    <Content Include="Content\images\loading.gif" />
+    <Content Include="Content\images\menu_arrows.png" />
+    <Content Include="Content\images\messager_icons.png" />
+    <Content Include="Content\images\pagination_icons.png" />
+    <Content Include="Content\images\panel_tools.png" />
+    <Content Include="Content\images\searchbox_button.png" />
+    <Content Include="Content\images\slider_handle.png" />
+    <Content Include="Content\images\spinner_arrows.png" />
+    <Content Include="Content\images\tabs_icons.png" />
+    <Content Include="Content\images\tree_icons.png" />
+    <Content Include="Content\images\validatebox_warning.png" />
+    <Content Include="Content\Template.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Image\QMSlog.png" />
+    <Content Include="Scripts\basic.js" />
+    <Content Include="Scripts\DefineData\_home.js" />
+    <Content Include="Scripts\DefineData\_PartialView_ConfigureSetting.js" />
+    <Content Include="Scripts\DefineData\_PartialView_MB2DFormat.js" />
+    <Content Include="Scripts\DefineData\_PartialView_ModelName.js" />
+    <Content Include="Scripts\DefineData\_PartialView_ModelName_Data.js" />
+    <Content Include="Scripts\DefineData\_PartialView_Public.js" />
+    <Content Include="Scripts\DefineData\_PartialView_UserBasicInfo.js" />
+    <Content Include="Scripts\DefineData\_PartialView_UserRight.js" />
+    <Content Include="Scripts\DefineData\_PartialView_SNRule.js" />
+    <Content Include="Scripts\DeleteData\_home.js" />
+    <Content Include="Scripts\DeleteData\_PartialView_DeleteFVSSN.js" />
+    <Content Include="Scripts\DeleteData\_PartialView_DeleteInputSN.js" />
+    <Content Include="Scripts\DeleteData\_PartialView_DeleteLaserOKSN.js" />
+    <Content Include="Scripts\DeleteData\_PartialView_DeleteSendOKSN.js" />
+    <Content Include="Scripts\DeleteData\_PartialView_DeleteWO.js" />
+    <Content Include="Scripts\highcharts.js" />
+    <Content Include="Scripts\Index\_index.js" />
+    <Content Include="Scripts\Index\_MainMenuUI.js" />
+    <Content Include="Scripts\jquery JavaScript Library v1.9.0.js" />
+    <Content Include="Scripts\jQuery JavaScript Library v3.3.js" />
+    <Content Include="Scripts\jquery.dataTables.min.js" />
+    <Content Include="Scripts\jquery.easyui.min.js" />
+    <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\QueryData\_PartialView_B.js" />
+    <Content Include="Scripts\QueryData\_PartialView_G.js" />
+    <Content Include="Scripts\QueryData\_menulist.js" />
+    <Content Include="Scripts\QueryData\_PartialView_R.js" />
+    <Content Include="Scripts\QueryData\_PartialView_SNTrace.js" />
+    <Content Include="Scripts\QueryData\_PartialView_SpecialItem.js" />
+    <Content Include="Scripts\QueryData\_PartialView_StationData.js" />
+    <Content Include="Scripts\ShowBoardItem\_ShowBoardItem.js" />
+    <Content Include="Scripts\SpecialItem\_home.js" />
+    <Content Include="Scripts\SpecialItem\_PartialView_ChangeSNStatus.js" />
+    <Content Include="Scripts\SpecialItem\_PartialView_LockSN.js" />
+    <Content Include="Scripts\SpecialItem\_PartialView_Public.js" />
+    <Content Include="Scripts\SpecialItem\_PartialView_RecoverKey.js" />
+    <Content Include="Scripts\SpecialItem\_PartialView_TransferHisData.js" />
+    <Content Include="Scripts\UploadData\_UploadData.js" />
+    <Content Include="Scripts\UploadData\_PartialView_UploadData.js" />
+    <Content Include="Scripts\UploadFile\_PartialView_UploadFile.js" />
+    <Content Include="Scripts\UploadFile\_UploadFile.js" />
+    <Content Include="Scripts\xlsx.core.min.js" />
+    <Content Include="Scripts\xlsx.full.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\MainMenuUI.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\QueryData\QueryData.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DefineData\DefineData.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\UploadData\UploadData.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\UploadFile\UploadFile.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\QueryData\_PartialView_General.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DefineData\_PartialView_ModelName_Data.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DefineData\_PartialView_WO_Data.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DefineData\_PartialView_UserRight.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\icons\vssver.scc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\images\vssver.scc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\QueryData\_PartialView_Batch.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\QueryData\_PartialView_RTMS.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Register.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\chgPassWord.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DefineData\_PartialView_ModelName.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DefineData\_PartialView_SNRule.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DefineData\_PartialView_ConfigureSetting.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DefineData\_PartialView_UserBasicInfo.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DefineData\_PartialView_MB2DFormat.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\UploadData\_PartialView_UploadData.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\QueryData\_PartialView_SNTrace.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\QueryData\_PartialView_StationData.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DefineData\_PartialView_Public.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\UploadFile\_PartialView_UploadFile.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DefineData\_PartialView_QSMSConfigureSetting.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DefineData\_PartialView_ChangeSNStatus.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\SpecialItem\SpecialItem.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\SpecialItem\_PartialView_TransferHisData.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\SpecialItem\_PartialView_ChangeSNStatus.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\SpecialItem\_PartialView_LockSN.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\SpecialItem\_PartialView_Public.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DeleteData\DeleteData.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DeleteData\_PartialView_DeleteSendOKSN.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DeleteData\_PartialView_DeleteInputSN.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\QueryData\_PartialView_WIPQuery.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\SpecialItem\_PartialView_RecoverKey.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\SpecialItem\_PartialView_ReAllocateKey.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\QueryData\_PartialView_BaseData.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\QueryData\_PartialView_Q_LostLabel.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\QueryData\_PartialView_FVSReport.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DefineData\_PartialView_StockManage.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DeleteData\_PartialView_DeleteWO.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DeleteData\_PartialView_DeleteFVSSN.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\QueryData\_PartialView_WIPQueryByWO.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\QueryData\_PartialView_ReleaseWO.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DeleteData\_PartialView_DeleteLaserOKSN.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ShowBoardItem\ShowBoardItem.cshtml" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:16924/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

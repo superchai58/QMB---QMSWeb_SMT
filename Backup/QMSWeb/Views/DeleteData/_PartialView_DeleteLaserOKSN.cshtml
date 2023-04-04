@@ -1,0 +1,46 @@
+﻿@model QMSWeb.Model.DeleteData
+
+<script src="~/Scripts/DeleteData/_PartialView_DeleteLaserOKSN.js"></script>
+
+<div style="width:100%;height:520px;">
+     @{
+         <br />
+           var xmlList = Model.xmlList;
+           var jsonxmlList = Newtonsoft.Json.JsonConvert.SerializeObject(Model.xmlList);
+           if (!string.IsNullOrEmpty(jsonxmlList))
+           {
+              foreach (var item in xmlList)
+              { 
+                  string Item = item.Item;
+                  string ItemType = item.ItemType;
+                  if (ItemType.ToLower() == "combobox")
+                  {
+                     @Html.Label("", Item, new { @class = "TSLabel" });
+                      <select id="@Item"></select>
+                   }
+                  else if (ItemType.ToLower() != "" && ItemType.ToLower() != "button")
+                   {
+                       @Html.Label("", Item, new { @class = "TSLabel" });
+                       string strItem=Item;
+                       <input id="@strItem" class="easyui-textbox TextBox_SI"/>
+                    }           
+                }
+                <input id="limitQty" type="hidden" value="@Model.limitQty"/>
+                <input id="xmlList" type="hidden" value="@jsonxmlList"/>
+               }
+               <button id="Delete" class="ButtonDel" name="Delete" onclick="bt_click(this.id)">删除</button>
+              <br />
+         }
+        <br />&emsp;
+      <div class="div_fp_DS">
+            <br />
+            @Html.TextBox("filePath", "", new { @class = "f_TextBox_DS"})
+            <button id="Upload" name="btnUpload" class="ButtonUpload" onclick="btUpload()">批量删除</button>
+            <br /><br />
+            <a class="href" href="javascript:dowloadTemplate()">[ Download Template ]</a>          
+       </div>
+      <br />&emsp;
+      <div style="background-color:lightpink;height:30px;width:400px;display:inline-block;margin:5px">
+           <label id="lblmsg" class="ts_Label">msg......</label>
+      </div>
+  </div>

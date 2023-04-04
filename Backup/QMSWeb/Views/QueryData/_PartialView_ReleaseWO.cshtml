@@ -1,0 +1,45 @@
+﻿@model QMSWeb.Model.QueryData
+
+<script src="~/Scripts/QueryData/_PartialView_SpecialItem.js?v=20200829"></script>
+<script src="~/Scripts/jquery.easyui.min.js"></script>
+
+<div style="padding-left:5px;display:inline-block">
+    @{
+         var xmlList = Model.xmlList;
+         var jsonxmlList = Newtonsoft.Json.JsonConvert.SerializeObject(Model.xmlList);
+         if (!string.IsNullOrEmpty(jsonxmlList))
+         {
+            foreach (var item in xmlList)
+            { 
+                string Item = item.Item;
+                string ItemType = item.ItemType;
+                if (Item != "ObjectName")
+                {
+                  @Html.Label("", Item, new { @class = "LabelBase" });
+                }
+                if (ItemType.ToLower() != "")
+                {
+                  if (Item == "ObjectName")
+                  {
+                     @Html.TextBox(Item, "", new { @type = "hidden" })
+                  }
+                  else{
+                      <input id="@Item" class="easyui-textbox TextBox_Q"/>
+                  }
+                }
+                <input id="xmlList" type="hidden" value="@jsonxmlList"/>
+             }
+          }    
+     }        
+     <button id="submitQ" name="btnQuery" class="ButtonFix" onclick="btnRW_click(this.id)">查询</button>
+     <button id="submitE" name="btnExcel" class="Buttonexport" onclick="btnRW_click(this.id)">导出</button>
+</div>
+
+<div id="myDataTable_DIV" style="width:99%;display:inline-block;border:1px solid #b7d2ff;border-radius:1px;margin:5px">
+     @* @Html.Label("", "ReworkQty", new { @class = "LabelBaseR" })
+      <input id="ReworkQty" class="TextBox_R"/><br />*@
+      <Table id="myDataTable" class="table"></Table>
+</div>
+
+
+

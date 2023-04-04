@@ -1,0 +1,83 @@
+﻿@model QMSWeb.Model.SpecialItem
+
+<script src="~/Scripts/SpecialItem/_PartialView_Public.js"></script>
+
+<div id="el" class="easyui-layout" style="width:100%;height:480px;">
+    <div data-options="region:'west',title:'Define Zone',split:true" style="width:350px;">
+         @{
+           var xmlList = Model.xmlList;
+           var jsonxmlList = Newtonsoft.Json.JsonConvert.SerializeObject(Model.xmlList);
+           if (!string.IsNullOrEmpty(jsonxmlList))
+           {
+              <br />
+              foreach (var item in xmlList)
+              { 
+                  string Item = item.Item;
+                  string ItemType = item.ItemType;
+                  if (ItemType.ToLower() == "combobox")
+                  {
+                     @Html.Label("", Item, new { @class = "DLabel" });
+                      <select id="@Item"></select>
+                   }
+                  else if (ItemType.ToLower() != "" && ItemType.ToLower() != "button")
+                   {
+                       @Html.Label("", Item, new { @class = "DLabel" });
+                       if (Item == "Username")
+                       {
+                           string strItemU = Item;
+                           <input id="@strItemU" class="easyui-textbox TextBox_M" data-options="events:{blur:UserNameLostFocus}"/>
+                       }
+                       else if (Item == "PassWord")
+                       {
+                           string strItemP = Item;
+                           <input id="@strItemP" class="easyui-textbox TextBox_M" type="password"/>
+                       }
+                       else{
+                            string strItem=Item;
+                            <input id="@strItem" class="easyui-textbox TextBox_M" type="text" />
+                       }
+                    }           
+                }
+                <input id="xmlList" type="hidden" value="@jsonxmlList"/>
+               }
+              <br /><br />
+              <div style="text-align:center;margin:10px">
+                 @foreach (var item in xmlList)
+                 {
+                   string Item = item.Item;
+                   string ItemType = item.ItemType;
+                   if (ItemType.ToLower() == "button")
+                   {
+                      if (Item == "AddNew")
+                      {
+                         <button id="AddNew" class="ButtonAdd" name="AddNew" onclick="bt_click(this.id)">添加</button>
+                      }
+                      if (Item == "Update")
+                      {
+                         <button id="Update" class="ButtonUpd" name="Update" onclick="bt_click(this.id)">更新</button>
+                      }
+                      if (Item == "Delete")
+                      {
+                         <button id="Delete" class="ButtonDel" name="Delete" onclick="bt_click(this.id)">删除</button>
+                      }
+                      if (Item == "Excel")
+                      {
+                         <button id="Excel" class="Buttonexport" name="Excel" onclick="bt_click(this.id)">导出</button>
+                      }
+                       if (Item == "Fix")
+                      {
+                         <button id="Fix" class="ButtonAdd" name="Copy" onclick="bt_click(this.id)">解除</button>
+                      }
+                      if (Item == "Copy")
+                      {
+                         <button id="Copy" class="ButtonCopy" name="Copy" onclick="bt_click(this.id)">拷贝</button>
+                      }
+                    }
+                  }
+              </div>
+         }
+   </div>
+    <div data-options="region:'center',title:'Data Zone',split:true" style="padding:5px;">
+        <Table id="myDtTable" class="table"></Table>
+    </div>
+</div>

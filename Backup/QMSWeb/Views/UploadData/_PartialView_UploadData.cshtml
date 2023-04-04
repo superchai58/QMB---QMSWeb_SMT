@@ -1,0 +1,58 @@
+﻿@model QMSWeb.Model.UploadData
+
+<script src="~/Scripts/UploadData/_PartialView_UploadData.js"></script>
+<script src="~/Scripts/jquery.easyui.min.js"></script>
+
+<div id="el" class="easyui-layout" style="width:100%;height:520px;">
+    <div data-options="region:'west',title:'Define Zone',split:true" style="width:370px;">
+        <div class="div_UD">
+        @{
+           var xmlList = Model.xmlList;
+           var jsonxmlList = Newtonsoft.Json.JsonConvert.SerializeObject(Model.xmlList);
+           if (!string.IsNullOrEmpty(jsonxmlList))
+              {
+                 foreach (var item in xmlList)
+                 { 
+                    string Item = item.Item;
+                    string ItemType = item.ItemType;
+                    <br />
+                    if (ItemType.ToLower() == "combobox")
+                    {
+                       @Html.Label("", Item, new { @class = "DLabel" });
+                       <select id="@Item"></select>
+                     }
+                     else if (ItemType.ToLower() != "")
+                     {
+                       @Html.Label("", Item, new { @class = "DLabel" });
+                       string strItem=Item;
+                       <input id="@strItem" class="easyui-textbox TextBox_MD"/>
+                      }           
+                }
+             }
+             <input id="xmlList" type="hidden" value="@jsonxmlList"/>
+             <input id="limitQty" type="hidden" value="@Model.limitQty"/> 
+         }
+          <div style="width:340px;height:20px;display:inline-block;margin:5px;float:left;text-align:center;">
+               <a style="font-size:12px;font-family:'Microsoft YaHei';color:blue">全部删除</a>
+               <input type="checkbox" id="delALL" style="display: inline-block;height:10px;"/>
+           </div>
+           <br /><br />
+           <button id="Save" class="ButtonAdd" name="AddNew" onclick="bt_click(this.id)">保存</button>
+           <button id="Delete" class="ButtonDel" name="Delete" onclick="bt_click(this.id)">删除</button>
+           <button id="Excel" class="Buttonexport" name="Excel" onclick="bt_click(this.id)">导出</button>
+        </div>
+
+        <div class="div_fp_UD">
+            <br />
+            @Html.TextBox("filePath", "", new { @class = "f_TextBox_UD"})
+            <button id="Upload" name="btnUpload" class="ButtonUpload" onclick="btUpload()">上传</button>
+            <br /><br />
+            <div class="div_msg_UD"><label id="lblmsg" class="u_Label">msg......</label></div>
+            <br />
+            <a class="href" href="javascript:dowloadTemplate()">[ Download Template ]</a>          
+        </div>
+    </div>
+    <div data-options="region:'center',title:'Data Zone',split:true" style="padding:5px;">
+        <Table id="myDataTable" class="table"></Table>
+    </div>
+</div>

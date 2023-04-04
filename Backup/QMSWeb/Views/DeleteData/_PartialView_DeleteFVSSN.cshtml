@@ -1,0 +1,44 @@
+﻿@model QMSWeb.Model.DeleteData
+
+<script src="~/Scripts/DeleteData/_PartialView_DeleteFVSSN.js"></script>
+<div id="el" class="easyui-layout" style="width:100%;height:520px;">
+  <div data-options="region:'west',title:'Define Zone',split:true" style="width:380px;">
+     @{
+         <br />
+           var xmlList = Model.xmlList;
+           var jsonxmlList = Newtonsoft.Json.JsonConvert.SerializeObject(Model.xmlList);
+           if (!string.IsNullOrEmpty(jsonxmlList))
+           {
+              foreach (var item in xmlList)
+              { 
+                  <br />
+                  string Item = item.Item;
+                  string ItemType = item.ItemType;
+                  if (ItemType.ToLower() == "combobox")
+                  {
+                     @Html.Label("", Item, new { @class = "TSLabel" });
+                      <select id="@Item"></select>
+                   }
+                  else if (ItemType.ToLower() != "" && ItemType.ToLower() != "button")
+                   {
+                       @Html.Label("", Item, new { @class = "TSLabel" });
+                       string strItem=Item;
+                       <input id="@strItem" class="easyui-textbox TextBox_SI"/>
+                    }           
+                }
+                <input id="xmlList" type="hidden" value="@jsonxmlList"/>
+               }
+               <br /><br />
+               <div style="text-align:center;width:350px;margin:10px">
+                   <button id="Delete" class="ButtonDel" name="Delete" onclick="bt_click(this.id)">删除</button>
+                   <button id="Query" class="ButtonQuery" name="Query" onclick="bt_click(this.id)">查询</button>
+               </div>
+              <br />
+         }
+        <br />&emsp;消息:
+        &emsp;<div id="divmsg" class="div_msg_LS"></div>
+  </div>
+  <div data-options="region:'center',title:'Data Zone',split:false" style="padding:5px;">
+        <Table id="myDtTable" class="table"></Table>
+   </div>
+</div>
